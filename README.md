@@ -24,7 +24,13 @@ Aplicación web desarrollada con **Blazor** (.NET 8) para la gestión de estudia
 1. **Clona el repositorio:**
 
 ```
-git clone https://github.com/tu-usuario/PruebaCRUD.git cd PruebaCRUD
+git clone https://github.com/tu-usuario/PruebaCRUD.git
+```
+
+Posteriormente:
+
+```
+cd PruebaCRUD
 ```
 
 2. **Configura la cadena de conexión a tu base de datos SQL Server**  
