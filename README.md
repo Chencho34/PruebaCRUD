@@ -79,7 +79,7 @@ Ejecuta el programa y Abre tu navegador en `https://localhost:7071/students` (o 
 
 ## Capturas de pantalla
 
-### Listado y paginacion
+### Listado, paginacion y funcionalidad CRUD
 ![Inicio](images/inicio.png)
 ### Formulario para crear y editar
 ![Editar](images/editar.png)
