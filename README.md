@@ -80,7 +80,6 @@ Ejecuta el programa y Abre tu navegador en `https://localhost:7071/students` (o 
 ## Capturas de pantalla
 
 ![Inicio](images/inicio.png)
-![Crear](images/crear.png)
 ![Editar](images/editar.png)
 ![Eliminar](images/eliminar.png)
 ![Detaller](images/detalles.png)
