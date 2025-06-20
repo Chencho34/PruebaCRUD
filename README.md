@@ -66,7 +66,7 @@ Presiona F5 o ejecuta:
 dotnet run
 ```
 
-Ejecuta el programa y Abre tu navegador en `https://localhost:5001` (o el puerto configurado).
+Ejecuta el programa y Abre tu navegador en `https://localhost:7071/students` (o el puerto configurado).
 
 ## Estructura del proyecto
 - `Pages/Home.razor`: Listado principal de estudiantes.
