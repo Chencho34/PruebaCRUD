@@ -28,24 +28,28 @@ git clone https://github.com/tu-usuario/PruebaCRUD.git cd PruebaCRUD
 ```
 
 2. **Configura la cadena de conexión a tu base de datos SQL Server**  
-   Edita el archivo `appsettings.json` y ajusta la cadena de conexión bajo `ConnectionStrings`.
-
-3. **Aplica las migraciones de la base de datos:**
+   Edita el archivo `appsettings.json`.
 
 ```
-dotnet ef database update
+"ConnectionStrings": {
+  "MyAppDbContext": "Server=TU_SERVIDOR;Database=PruebaCRUD;Trusted_Connection=True;TrustServerCertificate=true"
+}
+```
+•	Cambia TU_SERVIDOR por el nombre de tu instancia de SQL Server (por ejemplo, localhost o localhost\\SQLEXPRESS).
+
+3.	Aplica las migraciones
+Después de configurar la cadena de conexión, ejecuta:
+
+```
+PM> Update-Database
 ```
 
-4. **Ejecuta la aplicación:**
-
-```
-dotnet run
-```
+Esto creará la base de datos y las tablas necesarias.
 
 O desde Visual Studio, presiona F5.
 
-5. **Accede a la aplicación:**  
-   Abre tu navegador en `https://localhost:5001` (o el puerto configurado).
+5. **Accede a la aplicación:**
+Ejecuta el programa y Abre tu navegador en `https://localhost:5001` (o el puerto configurado).
 
 ## Estructura principal
 - `Components/Pages/Home.razor`: Listado principal de estudiantes.
