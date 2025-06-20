@@ -1,0 +1,86 @@
+﻿@page "/students/delete"
+@inject IDbContextFactory<PruebaCRUD.Data.MyAppDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Delete</PageTitle>
+
+<h1>Eliminar Estudiante</h1>
+
+<hr />
+
+<h4 class="text-danger ">¿Estas seguro de que quieres eliminar esto?</h4>
+<div class="mb-5">
+    @* <h2>Student</h2> *@
+    <hr />
+    @if (student is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <dl class="row">
+            <dt class="col-sm-2">Nombres</dt>
+            <dd class="col-sm-10">@student.Nombres</dd>
+            <dt class="col-sm-2">Apellidos</dt>
+            <dd class="col-sm-10">@student.Apellidos</dd>
+            <dt class="col-sm-2">FechaNacimiento</dt>
+            <dd class="col-sm-10">@student.FechaNacimiento</dd>
+            <dt class="col-sm-2">Direccion</dt>
+            <dd class="col-sm-10">@student.Direccion</dd>
+            <dt class="col-sm-2">Sexo</dt>
+            <dd class="col-sm-10">@student.Sexo</dd>
+            <dt class="col-sm-2">CURP</dt>
+            <dd class="col-sm-10">@student.CURP</dd>
+            <dt class="col-sm-2">Telefono</dt>
+            <dd class="col-sm-10">@student.Telefono</dd>
+            <dt class="col-sm-2">Email</dt>
+            <dd class="col-sm-10">@student.Email</dd>
+            <dt class="col-sm-2">Carrera</dt>
+            <dd class="col-sm-10">@student.Carrera</dd>
+            <dt class="col-sm-2">EsBecado</dt>
+            <dd class="col-sm-10">@student.EsBecado</dd>
+            <dt class="col-sm-2">Modalidad</dt>
+            <dd class="col-sm-10">@student.Modalidad</dd>
+            <dt class="col-sm-2">Descripcion</dt>
+            <dd class="col-sm-10">@student.Descripcion</dd>
+            <dt class="col-sm-2">TieneMascotas</dt>
+            <dd class="col-sm-10">@student.TieneMascotas</dd>
+            <dt class="col-sm-2">Mascotas</dt>
+            <dd class="col-sm-10">@student.Mascotas</dd>
+            <dt class="col-sm-2">HorarioComida</dt>
+            <dd class="col-sm-10">@student.HorarioComida</dd>
+        </dl>
+        <EditForm method="post" Model="student" OnValidSubmit="DeleteStudent" FormName="delete" Enhance>
+            <div class="d-flex gap-3">
+                <button type="submit" class="btn btn-danger" disabled="@(student is null)">Eliminar</button>
+                <a href="/" class="btn btn-outline-secondary">Volver</a>
+            </div>
+        </EditForm>
+    }
+</div>
+
+@code {
+    private Student? student;
+
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        student = await context.Student.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (student is null)
+        {
+            NavigationManager.NavigateTo("/");
+        }
+    }
+
+    private async Task DeleteStudent()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Student.Remove(student!);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/students");
+    }
+}

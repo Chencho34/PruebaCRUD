@@ -1,0 +1,203 @@
+﻿@page "/students/edit"
+@inject IDbContextFactory<PruebaCRUD.Data.MyAppDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Edit</PageTitle>
+
+<h1>Editar Informacion del Estudiante</h1>
+
+<hr />
+
+@if (Student is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4 mb-5">
+            <EditForm method="post" Model="Student" OnValidSubmit="UpdateStudent" FormName="edit" Enhance>
+                <DataAnnotationsValidator />
+                <ValidationSummary role="alert"/>
+                <input type="hidden" name="Student.Id" value="@Student.Id" />
+                <div class="mb-3">
+                    <label for="nombres" class="form-label">Nombres:</label>
+                    <InputText id="nombres" @bind-Value="Student.Nombres" class="form-control" />
+                    <ValidationMessage For="() => Student.Nombres" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="apellidos" class="form-label">Apellidos:</label>
+                    <InputText id="apellidos" @bind-Value="Student.Apellidos" class="form-control" />
+                    <ValidationMessage For="() => Student.Apellidos" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="fechanacimiento" class="form-label">FechaNacimiento:</label>
+                    <InputDate id="fechanacimiento" @bind-Value="Student.FechaNacimiento" class="form-control" />
+                    <ValidationMessage For="() => Student.FechaNacimiento" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="direccion" class="form-label">Direccion:</label>
+                    <InputText id="direccion" @bind-Value="Student.Direccion" class="form-control" />
+                    <ValidationMessage For="() => Student.Direccion" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="sexo" class="form-label">Sexo:</label>
+                    <InputSelect id="sexo" @bind-Value="Student.Sexo" class="form-select">
+                        <option value="">-- Hombre o Mujer --</option>
+                        @foreach (var genero in Genero)
+                        {
+                            <option value="@genero">@genero</option>
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="() => Student.Sexo" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="curp" class="form-label">CURP:</label>
+                    <InputText id="curp" @bind-Value="Student.CURP" class="form-control" />
+                    <ValidationMessage For="() => Student.CURP" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Telefono:</label>
+                    <InputText id="telefono" @bind-Value="Student.Telefono" class="form-control" />
+                    <ValidationMessage For="() => Student.Telefono" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <InputText id="email" @bind-Value="Student.Email" class="form-control" />
+                    <ValidationMessage For="() => Student.Email" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="carrera" class="form-label">Carrera:</label>
+                    <InputSelect id="carrera" @bind-Value="Student.Carrera" class="form-select">
+                        <option value="">-- Selecciona una carrera --</option>
+                        @foreach (var carrera in Carreras)
+                        {
+                            <option value="@carrera">@carrera</option>
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="() => Student.Carrera" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="esbecado" class="form-label">EsBecado:</label>
+                    <InputCheckbox id="esbecado" @bind-Value="Student.EsBecado" class="form-check-input" />
+                    <ValidationMessage For="() => Student.EsBecado" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="modalidad" class="form-label">Modalidad:</label>
+                    <InputSelect id="modalidad" @bind-Value="Student.Modalidad" class="form-select">
+                        <option value="">-- Selecciona modalidad --</option>
+                        @foreach (var modalidad in Modalidades)
+                        {
+                            <option value="@modalidad">@modalidad</option>
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="() => Student.Modalidad" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripcion:</label>
+                    <InputText id="descripcion" @bind-Value="Student.Descripcion" class="form-control" />
+                    <ValidationMessage For="() => Student.Descripcion" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="tienemascotas" class="form-label">TieneMascotas:</label>
+                    <InputCheckbox id="tienemascotas" @bind-Value="Student.TieneMascotas" class="form-check-input" />
+                    <ValidationMessage For="() => Student.TieneMascotas" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="mascotas" class="form-label">Mascotas:</label>
+                    <InputText id="mascotas" @bind-Value="Student.Mascotas" class="form-control" />
+                    <ValidationMessage For="() => Student.Mascotas" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="horariocomida" class="form-label">HorarioComida:</label>
+                    <InputText id="horariocomida" @bind-Value="Student.HorarioComida" class="form-control" />
+                    <ValidationMessage For="() => Student.HorarioComida" class="text-danger" />
+                </div>
+                <div class="d-flex gap-3">
+                        <button type="submit" class="btn btn-primary">Actualizar</button
+                     <a href="/students" class="btn btn-outline-secondary">Cancelar</a>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+}
+
+
+@code {
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    [SupplyParameterFromForm]
+    private Student? Student { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        Student ??= await context.Student.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (Student is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+
+    // To protect from overposting attacks, enable the specific properties you want to bind to.
+    // For more information, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task UpdateStudent()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Attach(Student!).State = EntityState.Modified;
+
+        try
+        {
+            await context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!StudentExists(Student!.Id))
+            {
+                NavigationManager.NavigateTo("notfound");
+            }
+            else
+            {
+                throw;
+            }
+        }
+
+        NavigationManager.NavigateTo("/");
+    }
+
+    private bool StudentExists(int id)
+    {
+        using var context = DbFactory.CreateDbContext();
+        return context.Student.Any(e => e.Id == id);
+    }
+
+    private List<string> Carreras = new()
+    {
+        "Ingenieria en Sistemas",
+        "Biologia",
+        "Derecho",
+        "Comercio",
+        "Educacion",
+        "Psicologia",
+        "Matematicas",
+        "Quimica",
+        "Economia",
+        "Administracion",
+        "Mercadotecnia"
+    };
+
+    private List<string> Modalidades = new()
+    {
+        "Presencial",
+        "Virtual",
+        "Dual"
+    };
+
+    private List<string> Genero = new()
+    {
+        "H",
+        "M"
+    };
+}

@@ -1,0 +1,50 @@
+﻿@page "/students"
+@rendermode InteractiveServer
+@inject IDbContextFactory<PruebaCRUD.Data.MyAppDbContext> DbFactory
+
+<PageTitle>Estudiantes</PageTitle>
+
+<h1>Registro de Estudiantes</h1>
+
+<hr />
+
+<p>
+    <a href="/students/create" class="btn btn-primary">Agregar Nuevo Estudiante</a>
+</p>
+
+<div class="mb-5">
+    <SfGrid TValue="Student" DataSource="@students" AllowPaging="true">
+        <GridPageSettings PageSize="20"/>
+        <GridColumns>
+            <GridColumn Field="Id" HeaderText="ID" Width="70" TextAlign="TextAlign.Center" />
+            <GridColumn Field="Nombres" HeaderText="Nombres" Width="150" />
+            <GridColumn Field="Apellidos" HeaderText="Apellidos" Width="150" />
+            <GridColumn Field="Telefono" HeaderText="Teléfono" Width="120" />
+            <GridColumn Field="Email" HeaderText="Email" Width="180" />
+            <GridColumn Field="Carrera" HeaderText="Carrera" Width="150" />
+            <GridColumn Field="Modalidad" HeaderText="Modalidad" Width="120" />
+            <GridColumn HeaderText="Acciones" Width="200">
+                <Template>
+                    @{
+                        var student = (context as Student)!;
+                    }
+                    <div class="btn-group">
+                        <a href="@($"/students/edit?id={student.Id}")" class="btn btn-outline-primary">Editar</a>
+                        <a href="@($"/students/details?id={student.Id}")" class="btn btn-outline-success">Detalles</a>
+                        <a href="@($"/students/delete?id={student.Id}")" class="btn btn-outline-danger">Eliminar</a>
+                    </div>
+                </Template>
+            </GridColumn>
+        </GridColumns>
+    </SfGrid>
+</div>
+
+@code {
+    private List<Student> students = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var db = await DbFactory.CreateDbContextAsync();
+        students = await db.Student.OrderBy(s => s.Id).ToListAsync();
+    }
+}
