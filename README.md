@@ -19,6 +19,12 @@ Aplicación web desarrollada con **Blazor** (.NET 8) para la gestión de estudia
 - SQL Server
 - Syncfusion Blazor Components
 
+## Requisitos previos
+
+- [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+- SQL Server (local o remoto)
+- Visual Studio 2022 (recomendado)
+
 ## Instalación y ejecución
 
 1. **Clona el repositorio:**
@@ -41,26 +47,32 @@ cd PruebaCRUD
   "MyAppDbContext": "Server=TU_SERVIDOR;Database=PruebaCRUD;Trusted_Connection=True;TrustServerCertificate=true"
 }
 ```
-•	Cambia TU_SERVIDOR por el nombre de tu instancia de SQL Server (por ejemplo, localhost o localhost\\SQLEXPRESS).
+•	Cambia TU_SERVIDOR por el nombre de tu instancia de SQL Server.
 
 3.	Aplica las migraciones
-Después de configurar la cadena de conexión, ejecuta:
+Abre la Consola del Administrador de Paquetes (Package Manager Console) en Visual Studio y ejecuta:
 
 ```
-PM> Update-Database
+Update-Database
 ```
 
-Esto creará la base de datos y las tablas necesarias.
+Esto creará la base de datos y las tablas automáticamente.
 
-O desde Visual Studio, presiona F5.
 
-5. **Accede a la aplicación:**
+4. **Ejecuta la aplicación:**
+Presiona F5 o ejecuta:
+
+```
+dotnet run
+```
+
 Ejecuta el programa y Abre tu navegador en `https://localhost:5001` (o el puerto configurado).
 
-## Estructura principal
-- `Components/Pages/Home.razor`: Listado principal de estudiantes.
-- `Components/Pages/Create.razor`: Alta de nuevos estudiantes.
-- `Components/Pages/Edit.razor`: Edición de estudiantes.
-- `Components/Pages/Details.razor`: Detalles de un estudiante.
-- `Components/Pages/Delete.razor`: Eliminación de estudiantes.
+## Estructura del proyecto
+- `Pages/Home.razor`: Listado principal de estudiantes.
+- `Pages/Create.razor`: Alta de nuevos estudiantes.
+- `Pages/Edit.razor`: Edición de estudiantes.
+- `Pages/Details.razor`: Detalles de un estudiante.
+- `Pages/Delete.razor`: Eliminación de estudiantes.
 - `Models/Student.cs`: Modelo de datos del estudiante.
+- `Data/MyAppDbContext.cs`: Contexto de Entity Framework.
