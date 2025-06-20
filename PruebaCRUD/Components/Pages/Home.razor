@@ -4,13 +4,15 @@
 
 <PageTitle>Estudiantes</PageTitle>
 
-<h1>Registro de Estudiantes</h1>
+<div class="alert bg-primary d-flex justify-content-between align-items-center">
+    <h1 class="text-white">Registro de Estudiantes</h1>
+    <a href="/students/create" class="btn btn-outline-light btn-lg">Agregar Nuevo Estudiante</a>
+</div>
 
 <hr />
 
-<p>
-    <a href="/students/create" class="btn btn-primary">Agregar Nuevo Estudiante</a>
-</p>
+@* <p>
+</p> *@
 
 <div class="mb-5">
     <SfGrid TValue="Student" DataSource="@students" AllowPaging="true">

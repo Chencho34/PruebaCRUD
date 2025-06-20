@@ -298,3 +298,4 @@ C:\Users\Armando\source\repos\PruebaCRUD\PruebaCRUD\bin\Debug\net8.0\Syncfusion.
 C:\Users\Armando\source\repos\PruebaCRUD\PruebaCRUD\bin\Debug\net8.0\Syncfusion.ExcelExport.Net.dll
 C:\Users\Armando\source\repos\PruebaCRUD\PruebaCRUD\bin\Debug\net8.0\Syncfusion.Licensing.dll
 C:\Users\Armando\source\repos\PruebaCRUD\PruebaCRUD\bin\Debug\net8.0\Syncfusion.PdfExport.Net.dll
+C:\Users\Armando\source\repos\PruebaCRUD\PruebaCRUD\obj\Debug\net8.0\PruebaCRUD.sourcelink.json
