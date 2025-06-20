@@ -1,4 +1,4 @@
-# PruebaCRUD
+# Control de Estudiantes CRUD 
 
 Aplicación web desarrollada con **Blazor** (.NET 8) para la gestión de estudiantes. Permite realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre un registro de estudiantes, utilizando Entity Framework Core y una base de datos SQL Server.
 
