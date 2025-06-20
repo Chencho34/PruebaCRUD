@@ -76,3 +76,12 @@ Ejecuta el programa y Abre tu navegador en `https://localhost:7071/students` (o 
 - `Pages/Delete.razor`: Eliminación de estudiantes.
 - `Models/Student.cs`: Modelo de datos del estudiante.
 - `Data/MyAppDbContext.cs`: Contexto de Entity Framework.
+
+## Capturas de pantalla
+
+![Inicio](images/inicio.png)
+![Crear](images/crear.png)
+![Editar](images/editar.png)
+![Eliminar](images/eliminar.png)
+![Detaller](images/detalles.png)
+
