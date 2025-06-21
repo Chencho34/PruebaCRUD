@@ -30,7 +30,7 @@ Aplicación web desarrollada con **Blazor** (.NET 8) para la gestión de estudia
 1. **Clona el repositorio:**
 
 ```
-git clone https://github.com/tu-usuario/PruebaCRUD.git
+git clone https://github.com/Chencho34/PruebaCRUD
 ```
 
 Posteriormente:
@@ -57,7 +57,6 @@ Update-Database
 ```
 
 Esto creará la base de datos y las tablas automáticamente.
-
 
 4. **Ejecuta la aplicación:**
 Presiona F5 o ejecuta:
@@ -87,4 +86,3 @@ Ejecuta el programa y Abre tu navegador en `https://localhost:7071/students` (o 
 ![Eliminar](images/eliminar.png)
 ### Pagina detalles
 ![Detaller](images/detalles.png)
-
