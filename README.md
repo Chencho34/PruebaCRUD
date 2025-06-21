@@ -22,8 +22,8 @@ Aplicación web desarrollada con **Blazor** (.NET 8) para la gestión de estudia
 ## Requisitos previos
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
-- SQL Server (local o remoto)
-- Visual Studio 2022 (recomendado)
+- SQL Server
+- Visual Studio 2022
 
 ## Instalación y ejecución
 
